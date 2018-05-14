@@ -12,8 +12,8 @@ class FriendsRecommender(MRJob):
         Output: yield (user1, user2), mutualFriend
 
         '''
-        user = ','.split(line[0])
-        friends = ','.split(line[1:])
+        user, friends_str = line.split(':')
+        friends = friends_str.split(',')
         if friends == 'private' or friends == 'notfound':
             return
 
@@ -29,6 +29,7 @@ class FriendsRecommender(MRJob):
         Output: key-value pair with unique key representing two people and all friends in common
                 e.g. user1, (user2, [mutualFriend1, mutualFriend2, ...])
         '''
+        print(pair)
         yield pair[0], (pair[1], sum(friends), friends)
 
     def reducer(self, user, friends):
