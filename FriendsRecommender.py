@@ -12,8 +12,8 @@ class FriendsRecommender(MRJob):
         Output: yield (user1, user2), mutualFriend
 
         '''
-        user = ':'.split(line[0])
-        friends = ':'.split(line[1:])
+        user = ','.split(line[0])
+        friends = ','.split(line[1:])
         if friends == 'private' or friends == 'notfound':
             return
 
