@@ -46,7 +46,8 @@ class FriendsRecommender(MRJob):
         potential_friends = list(friends)
         print(user, potential_friends)
         if potential_friends:
-            yield user, potential_friends.sort(key=lambda x: int(x[1]))[:TOP_N]
+            potential_friends.sort(key=lambda x: int(x[1]), reverse=True)
+            yield user, potential_friends[:TOP_N]
 
 if __name__ == '__main__':
     FriendsRecommender.run()
