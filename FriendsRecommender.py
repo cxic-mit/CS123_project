@@ -5,8 +5,7 @@ TOP_N = 10
 class FriendsRecommender(MRJob):
     def mapper(self, _, line):
         '''
-        Compute the reversed index for each connection
-        between the source.
+	Create potential friend pair permutations.
         Input: each line is a person followed by list of the person's friends
                e.g. '104:101,1143,628701,2438054'
         Output: yield (user1, user2), mutualFriend
@@ -29,8 +28,9 @@ class FriendsRecommender(MRJob):
         Output: key-value pair with unique key representing two people and all friends in common
                 e.g. user1, (user2, [mutualFriend1, mutualFriend2, ...])
         '''
-        print(pair)
-        yield pair[0], (pair[1], sum(friends), friends)
+        friends = list(friends)
+        print(pair[0], (pair[1], len(friends), friends))
+        yield pair[0], (pair[1], len(friends), friends)
 
     def reducer(self, user, friends):
         '''
@@ -43,7 +43,10 @@ class FriendsRecommender(MRJob):
                 e.g. user1, [(user2, largestNumberOFMutualFriends, [mutualFriend1, mutualFriend2, ...]),
                             (user3, secondLargestNumberOFMutualFriends, [mutualFriend1, ...]), ...]
         '''
-        yield user, friends.sort(key=lambda x: x[1])[:TOP_N]
+        potential_friends = list(friends)
+        print(user, potential_friends)
+        if potential_friends:
+            yield user, potential_friends.sort(key=lambda x: int(x[1]))[:TOP_N]
 
 if __name__ == '__main__':
     FriendsRecommender.run()
