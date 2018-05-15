@@ -1,6 +1,6 @@
 from mrjob.job import MRJob
 import itertools
-TOP_N = 10
+TOP_N = 5 #to reduce the file size
 
 class FriendsRecommender(MRJob):
     def mapper(self, _, line):
@@ -29,7 +29,6 @@ class FriendsRecommender(MRJob):
                 e.g. user1, (user2, [mutualFriend1, mutualFriend2, ...])
         '''
         friends = list(friends)
-        print(pair[0], (pair[1], len(friends), friends))
         yield pair[0], (pair[1], len(friends), friends)
 
     def reducer(self, user, friends):
@@ -44,7 +43,6 @@ class FriendsRecommender(MRJob):
                             (user3, secondLargestNumberOFMutualFriends, [mutualFriend1, ...]), ...]
         '''
         potential_friends = list(friends)
-        print(user, potential_friends)
         if potential_friends:
             potential_friends.sort(key=lambda x: int(x[1]), reverse=True)
             yield user, potential_friends[:TOP_N]
