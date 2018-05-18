@@ -20,8 +20,8 @@ class Get_pairs_distance(MRJob):
         user, friends = read_line(line)
         
         if friends != ['private'] and \
-            friends != ['notfound'] and \
-            friends != ['']:
+           friends != ['notfound'] and \
+           friends != ['']:
 
             data = open("small_data.txt", "r")
             for line in data:
