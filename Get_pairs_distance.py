@@ -17,8 +17,7 @@ def read_line(line):
 class Get_pairs_distance(MRJob):
     
     def mapper(self, _, line):
-        user, friends_str = line.split(':')
-        friends = friends_str.split(',')
+        user, friends = read_line(line)
         
         if friends != ['private'] and \
             friends != ['notfound'] and \
