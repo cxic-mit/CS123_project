@@ -1,9 +1,11 @@
 from mrjob.job import MRJob
+import math
 
 def calculate_distance(user_1, user_2):
     union = len(set(user_1) | set(user_2))
     intersect = len(set(user_1) & set(user_2))
-    return (union-intersect)
+    distance = math.sqrt(union - intersect)
+    return distance
 
 
 def read_line(line):
