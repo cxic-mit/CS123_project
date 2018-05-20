@@ -15,3 +15,18 @@ Files:
 
 ### 2. CPU usage is around 6%. How to improve this?
 
+### 3. When running on a larger file ~47 MB, 
+
+- BrokenPipeError: [Errno 32] Broken pipe
+: tried to output the file directly onto GCP
+
+### 4. How to run on a 9.3 GB file? Split first or upload it onto GCP
+
+### 5. Feasible to run in background?
+
+### 6. Used a large amount of memory
+
+~70 GB
+killed 9
+
+
