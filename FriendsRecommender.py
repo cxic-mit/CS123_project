@@ -1,6 +1,7 @@
 from mrjob.job import MRJob
 import itertools
 import heapq
+import time
 
 TOP_N = 5 #to reduce the file size
 
@@ -31,7 +32,7 @@ class FriendsRecommender(MRJob):
                 e.g. user1, (user2, [mutualFriend1, mutualFriend2, ...])
         '''
         friends_list = list(friends)
-        yield pair[0], (pair[1], len(friends_list), friends)
+        yield pair[0], (pair[1], len(friends_list), friends_list)
 
     def reducer_init(self):
         self.dict = {}
@@ -60,7 +61,10 @@ class FriendsRecommender(MRJob):
     def reducer_final(self):
         for user, friend_list in self.dict.items():
             friend_list.sort(reverse = True)
-            yield user, list(friend_list)
+            yield str(user), list(friend_list)
 
 if __name__ == '__main__':
+    start = time.clock()
     FriendsRecommender.run()
+    end = time.clock()
+    print("time:", end - start)
