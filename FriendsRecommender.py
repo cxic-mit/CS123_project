@@ -43,8 +43,8 @@ class FriendsRecommender(MRJob):
     def reducer(self, user, friends):
         '''
         Get the TOP N recommendations for user.
-        Input: key is user, values is potential friends - each tuple is a potential friend,
-               the number of mutual friends they have, and the list of mutual friends that they have
+        Input: key is user, values is potential friends - each tuple is a potential friend
+               and the number of mutual friends they have
                e.g. user1, [(user2, numberOFMutualFriends, [mutualFriend1, mutualFriend2, ...]),
                             (user3, numberOFMutualFriends, [mutualFriend1, mutualFriend4, ...]), ...]
         Output: ranked list of TOP_N potential friends
@@ -58,4 +58,7 @@ class FriendsRecommender(MRJob):
             yield str(user), list(friend_list)
 
 if __name__ == '__main__':
+    start = time.clock()
     FriendsRecommender.run()
+    end = time.clock()
+    print("time:", end - start)
