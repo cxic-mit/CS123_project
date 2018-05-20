@@ -1,6 +1,6 @@
 from mrjob.job import MRJob
 import itertools
-import heapq
+from heapq import nlargest
 import time
 
 TOP_N = 5 #to reduce the file size
@@ -48,18 +48,9 @@ class FriendsRecommender(MRJob):
                e.g. user1, [(user2, numberOFMutualFriends, [mutualFriend1, mutualFriend2, ...]),
                             (user3, numberOFMutualFriends, [mutualFriend1, mutualFriend4, ...]), ...]
         Output: ranked list of TOP_N potential friends
-                e.g. user1, [(user2, largestNumberOFMutualFriends, [mutualFriend1, mutualFriend2, ...]),
-                            (user3, secondLargestNumberOFMutualFriends, [mutualFriend1, ...]), ...]
         '''
         if friends:
-            h = [(0, "") for i in range(TOP_N)]
-            heapq.heapify(h)
-            for f in friends:
-                min_num, min_name = h[0]
-                name, num_mu_friend = f
-                if num_mu_friend > min_num:
-                    heapq.heapreplace(h, (num_mu_friend, name))
-            self.dict[user] = h
+            self.dict[user] = nlargest(TOP_N, friends, key = lambda e:e[1])
 
     def reducer_final(self):
         for user, friend_list in self.dict.items():
