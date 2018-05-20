@@ -1,6 +1,5 @@
 from mrjob.job import MRJob
 import itertools
-import heapq
 import time
 
 TOP_N = 5 #to reduce the file size
@@ -8,7 +7,7 @@ TOP_N = 5 #to reduce the file size
 class FriendsRecommender(MRJob):
     def mapper(self, _, line):
         '''
-    Create potential friend pair permutations.
+	Create potential friend pair permutations.
         Input: each line is a person followed by list of the person's friends
                e.g. '104:101,1143,628701,2438054'
         Output: yield (user1, user2), mutualFriend
@@ -31,14 +30,8 @@ class FriendsRecommender(MRJob):
         Output: key-value pair with unique key representing two people and all friends in common
                 e.g. user1, (user2, [mutualFriend1, mutualFriend2, ...])
         '''
-        if friends:
-            count = 0
-            for f in friends:
-                count += 1
-            yield pair[0], (pair[1], count)
-
-    def reducer_init(self):
-        self.dict = {}
+        friends = list(friends)
+        yield pair[0], (pair[1], len(friends), friends)
 
     def reducer(self, user, friends):
         '''
@@ -51,20 +44,10 @@ class FriendsRecommender(MRJob):
                 e.g. user1, [(user2, largestNumberOFMutualFriends, [mutualFriend1, mutualFriend2, ...]),
                             (user3, secondLargestNumberOFMutualFriends, [mutualFriend1, ...]), ...]
         '''
-        if friends:
-            h = [(0, "") for i in range(TOP_N)]
-            heapq.heapify(h)
-            for f in friends:
-                min_num, min_name = h[0]
-                name, num_mu_friend = f
-                if num_mu_friend > min_num:
-                    heapq.heapreplace(h, (num_mu_friend, name))
-            self.dict[user] = h
-
-    def reducer_final(self):
-        for user, friend_list in self.dict.items():
-            friend_list.sort(reverse = True)
-            yield str(user), list(friend_list)
+        potential_friends = list(friends)
+        if potential_friends:
+            potential_friends.sort(key=lambda x: int(x[1]), reverse=True)
+            yield user, potential_friends[:TOP_N]
 
 if __name__ == '__main__':
     start = time.clock()
