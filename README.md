@@ -30,3 +30,15 @@ Files:
 killed 9
 
 
+python3 FriendsRecommender.py -r dataproc --num-core-instances 12 ./data/friends-000______.txt --output-dir=gs://mrjob-us-central1-ab479002dcab930f/test_res/
+
+python3 FriendsRecommender.py --jobconf mapreduce.job.reduces=1 ./data/friends-000______small.csv 
+
+### To do
+
+Learn to use screen to run mrjob in 'background'.
+
+Imporve the performance of FriendRecommender.py
+
+
+
