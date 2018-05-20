@@ -29,4 +29,6 @@ Files:
 ~70 GB
 killed 9
 
+python3 FriendsRecommender.py -r dataproc --num-core-instances 12 ./data/friends-000______.txt --output-dir=gs://mrjob-us-central1-ab479002dcab930f/test_res/
+
 
