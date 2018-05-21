@@ -18,7 +18,7 @@ class FriendsRecommender(MRJob):
         if friends == 'private' or friends == 'notfound':
             return
 
-        pairs = list(itertools.permutations(friends, 2))
+        pairs = list(itertools.combinations(friends, 2))
         for pair in pairs:
             yield pair, user
 
