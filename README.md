@@ -3,8 +3,8 @@ Team Members: Xi Chen, Yangyang Dai, Rose Gao, Liqiang Yu
 
 Files:
 1. Proposal (contains our initial proposed project)
-2. Exploration.ipynb: initial exploration of Friendster dataset
-3. data (contains a short sample text file)
+2. data (contains a short sample text file)
+3. Exploration.ipynb: initial exploration of Friendster dataset
 4. FriendsRecommender.py
 	- Run in command line: python3 FriendsRecommender.py --jobconf mapreduce.job.reduces=1 data/small.txt > data/output.txt
 5. Get_pairs_distance.py
