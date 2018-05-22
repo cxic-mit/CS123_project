@@ -8,7 +8,7 @@ Files:
 4. FriendsRecommender.py
 	- Run in command line: python3 FriendsRecommender.py --jobconf mapreduce.job.reduces=1 data/small.txt > data/output.txt
 5. Get_pairs_distance.py
-        - Run in command line: python3 Get_pairs_distance.py -r dataproc --num-core-instances 10 friends-000.txt --file friends-000.txt > data/output_distance.txt
+	- Run in command line: python3 Get_pairs_distance.py -r dataproc --num-core-instances 10 friends-000.txt --file friends-000.txt > data/output_distance.txt
  
 
 ## Problems
