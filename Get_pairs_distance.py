@@ -16,14 +16,16 @@ def read_line(line):
 
 class Get_pairs_distance(MRJob):
     
+    def mapper_init(self):
+        self.data = open("friends-000.txt", "r")
+    
     def mapper(self, _, line):
         user, friends = read_line(line)
         
         if friends != ['private'] and \
            friends != ['notfound'] and \
            friends != ['']:
-
-            data = open("small_data.txt", "r")
+            
             for line in data:
                 another_user, another_friends = read_line(line)
                 another_friends[-1] = another_friends[-1].strip('\n')
