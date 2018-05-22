@@ -18,7 +18,7 @@ class FriendsRecommender(MRJob):
         if friends == 'private' or friends == 'notfound':
             return
 
-        pairs = list(itertools.combinations(friends, 2))
+        pairs = list(itertools.permutations(friends, 2))
         for pair in pairs:
             yield pair, user
 
@@ -54,7 +54,7 @@ class FriendsRecommender(MRJob):
     def reducer_final(self):
         for user, friend_list in self.dict.items():
             friend_list.sort(reverse = True)
-            yield str(user), list(friend_list)
+            yield user, friend_list
 
 if __name__ == '__main__':
     FriendsRecommender.run()
