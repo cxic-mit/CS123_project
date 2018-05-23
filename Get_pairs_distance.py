@@ -17,7 +17,11 @@ def read_line(line):
 class Get_pairs_distance(MRJob):
     
     def mapper_init(self):
-        self.data = open("friends-000.txt", "r")
+        with open("friends-000.txt", "r") as f:  
+        # with open("data_0-10000.txt", "r") as f:
+        # with open("data_0-200.txt", "r") as f:
+            self.data = f.readlines()
+    
     
     def mapper(self, _, line):
         user, friends = read_line(line)
