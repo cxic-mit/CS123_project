@@ -54,3 +54,4 @@ Imporve the performance of FriendRecommender.py
 - Compare the size/closeness of different communities
 - Visualize the small community
 - Fill up the “private”
+- Use "networkx" to do another version for the above tasks
