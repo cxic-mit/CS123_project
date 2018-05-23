@@ -46,3 +46,11 @@ Imporve the performance of FriendRecommender.py
 
 
 
+
+### Nest-step Tasks:
+- Use betweenness centrality to find most important ppl within a community
+- Compare “betweenness centrality”, “closeness centrality”, “eigenvector centrality”, “Degree Centrality”, “Harmonic Centrality”, “Katz centrality” of the same graph.
+- Find out the path to friend A (if I know C, how to get to know A)
+- Compare the size/closeness of different communities
+- Visualize the small community
+- Fill up the “private”
