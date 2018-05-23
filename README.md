@@ -45,14 +45,30 @@ Learn to use screen to run mrjob in 'background'.
 Imporve the performance of FriendRecommender.py
 
 
-
+10000-20000
 
 ### Nest-step Tasks:
-- Use betweenness centrality to find most important ppl within a community
-- Compare “betweenness centrality”, “closeness centrality”, “eigenvector centrality”, “Degree Centrality”, “Harmonic Centrality”, “Katz centrality” of the same graph.
-- Find out the shortest path to friend A (if I know C, how to get to know A)
-- Compare the size/closeness of different communities
+Centrality:
+1. Betweeness
+2. Closeness
+3. Eigenvector
+4. Degree Centrality
+Task: get 2 done by Saturday, 2 done by Sunday
+
+Find out the shortest path from user 1 to user 2
+Task: get done by Saturday
+
+Kevin Bacon number
+sunday
+
+Compare the size/closeness of different communities
+- choose centroids that are far from each other 
+- Sunday
+
 - Visualize the small community
+
 - Fill up the “private”
+- Saturday
+
 - Use "networkx" to do another version for the above tasks
-- Maybe use other social network data with more attributes to conduct more analysis
+
