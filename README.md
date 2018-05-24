@@ -53,22 +53,23 @@ Centrality:
 2. Closeness
 3. Eigenvector
 4. Degree Centrality
-Task: get 2 done by Saturday, 2 done by Sunday
+- Task: get 2 done by Saturday, 2 done by Sunday
 
 Find out the shortest path from user 1 to user 2
-Task: get done by Saturday
+- Task: get done by Saturday
 
 Kevin Bacon number
-sunday
+- Task: get done by Sunday
 
 Compare the size/closeness of different communities
 - choose centroids that are far from each other 
-- Sunday
+- Task: get done by Sunday
 
-- Visualize the small community
+Fill up the “private”
+- Task: get done by Saturday
 
-- Fill up the “private”
-- Saturday
+Visualize the small community
 
-- Use "networkx" to do another version for the above tasks
+
+Use "networkx" to do another version for the above tasks
 
