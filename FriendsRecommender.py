@@ -16,7 +16,7 @@ class FriendsRecommender(MRJob):
         user, friends_str = line.split(':')
         friends = friends_str.split(',')
         if 'private' in friends or 'notfound' in friends:
-            return
+            yield None, None
 
         pairs = list(itertools.permutations(friends, 2))
         for pair in pairs:
@@ -30,8 +30,8 @@ class FriendsRecommender(MRJob):
         Output: key-value pair with unique key representing two people and all friends in common
                 e.g. user1, (user2, [mutualFriend1, mutualFriend2, ...])
         '''
-        user1, user2 = pair.split(' ')
-        if friends:
+        if friends and pair:
+            user1, user2 = pair.split(' ')
             count = 0
             for f in friends:
                 count += 1
