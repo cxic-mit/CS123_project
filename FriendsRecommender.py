@@ -1,7 +1,6 @@
 from mrjob.job import MRJob
 import itertools
 from heapq import nlargest
-import time
 
 TOP_N = 5 #to reduce the file size
 
@@ -52,7 +51,4 @@ class FriendsRecommender(MRJob):
 
 
 if __name__ == '__main__':
-    start = time.clock()
     FriendsRecommender.run()
-    end = time.clock()
-    print("time:", end - start)
