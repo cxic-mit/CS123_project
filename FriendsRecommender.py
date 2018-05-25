@@ -15,7 +15,7 @@ class FriendsRecommender(MRJob):
         '''
         user, friends_str = line.split(':')
         friends = friends_str.split(',')
-        if 'private' in friends or 'notfound' in friends:
+        if not friends_str or 'private' in friends or 'notfound' in friends:
             yield None, None
 
         pairs = list(itertools.permutations(friends, 2))
