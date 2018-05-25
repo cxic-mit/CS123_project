@@ -15,12 +15,11 @@ class FriendsRecommender(MRJob):
         '''
         user, friends_str = line.split(':')
         friends = friends_str.split(',')
-        if not friends_str or 'private' in friends or 'notfound' in friends:
-            yield None, None
-
-        pairs = list(itertools.permutations(friends, 2))
-        for pair in pairs:
-            yield str(pair[0]) + ' ' + str(pair[1]), user
+        if friends_str and 'private' not in friends and 'notfound' not in friends:
+            pairs = list(itertools.permutations(friends, 2))
+            if pairs:
+                for pair in pairs:
+                    yield str(pair[0]) + ' ' + str(pair[1]), user
 
     def combiner(self, pair, friends):
         '''
