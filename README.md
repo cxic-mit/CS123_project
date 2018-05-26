@@ -38,6 +38,8 @@ python3 FriendsRecommender.py -r dataproc --instance-type n1-highmem-2 --num-cor
 
 python3 FriendsRecommender.py -r dataproc --num-core-instances 3 gs://mrjob-us-central1-ab479002dcab930f/data/friends-000______small.txt > 000_small.txt
 
+python BFS\_Runner.py --input\_id=902 --target\_id=222
+
 ### To do
 
 Learn to use screen to run mrjob in 'background'.
