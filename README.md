@@ -29,6 +29,7 @@ Files:
 
 ### 6. Used a large amount of memory
 
+## Usage
 python3 FriendsRecommender.py -r dataproc --num-core-instances 12 ./data/friends-000______.txt --output-dir=gs://mrjob-us-central1-ab479002dcab930f/test_res/
 
 python3 FriendsRecommender.py --jobconf mapreduce.job.reduces=1 ./data/friends-000______small.csv 
@@ -38,7 +39,10 @@ python3 FriendsRecommender.py -r dataproc --instance-type n1-highmem-2 --num-cor
 
 python3 FriendsRecommender.py -r dataproc --num-core-instances 3 gs://mrjob-us-central1-ab479002dcab930f/data/friends-000______small.txt > 000_small.txt
 
-python BFS\_Runner.py --input\_id=902 --target\_id=222
+#### run_MRBFS.py
+python run_MRBFS.py 902 222 
+{the first number indicates the start node 
+the second number indicates the end node}
 
 ### To do
 
