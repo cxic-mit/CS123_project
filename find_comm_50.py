@@ -1,4 +1,4 @@
-# The output of this community is userA, [(user_1, dist1),...(user_10, dist10)]
+# The output of this community is userA, [(user_1, dist1),...(user_50, dist50)]
 
 from mrjob.job import MRJob
 import math
@@ -27,7 +27,6 @@ class find_comm(MRJob):
     def mapper(self, _, line):
         ppl = []                   
         user, lst = read_line(line)
-        # comm = lst.sort(key=operator.itemgetter(1))[1:50]
         comm = sorted(lst,key=itemgetter(1))[:50]
 
         for i in comm:
