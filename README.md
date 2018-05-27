@@ -11,6 +11,8 @@ Files:
 	- Run in command line: python3 Get_pairs_distance.py -r dataproc --num-core-instances 10 friends-000.txt --file friends-000.txt > data/output_distance.txt
 6. Closeness_centrality.py
 	- Run in command line: python3 Closeness_centrality.py comm_50.txt –file output_200-500_community.txt > closeness_output.txt
+7. Degree_centrality.py
+	- Run in command line: closeness_output.txtpython3 Degree_centrality.py data_200-500.txt –file comm_50.txt > output_degree_centrality.txt
  
 
 ## Problems
