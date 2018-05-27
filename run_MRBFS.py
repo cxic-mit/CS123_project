@@ -51,9 +51,10 @@ with open(output_file_0) as f:
 	for line in f:
 		line = line.strip('\n')
 		fields = line.split('|')
-		if str(fields[0]) == END_NODE and int(fields[0]):
+		if str(fields[0]) == END_NODE and int(fields[-3]) < 9999:
 			flag = True
-			print('The path from {0} to {1} is {2}, the distance is {3}'.format(START_NODE, END_NODE, '->'.join(fields[-2].split()), fields[-3]))
+			print('The path from {0} to {1} is {2}, the distance is {3}'.format(START_NODE, END_NODE, \
+				'->'.join(fields[-2].split()) + '->' + str(END_NODE), fields[-3]))
 
 if not flag:
 	print('Cannot find the path from {0} to {1} within {2} degree'.format(START_NODE, END_NODE,N))
