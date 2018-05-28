@@ -1,5 +1,6 @@
 #read community file in 
-#return the community and the person that has the highest betweenness score
+#return the community and the person that has the highest betweenness
+#score within the community
 
 from mrjob.job import MRJob
 from collections import defaultdict
