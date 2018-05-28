@@ -1,4 +1,5 @@
-#read community file in mapreduce
+#read community file in 
+#return the community and the person that has the highest betweenness score
 
 from mrjob.job import MRJob
 from collections import defaultdict
@@ -18,7 +19,7 @@ def read_line(line):
     return user_1, lst
 
 
-class betweeness_centrality(MRJob):
+class betweenness_centrality(MRJob):
     
     def mapper_init(self):
         with open("shortest_path.txt", "r") as f:
@@ -58,5 +59,5 @@ class betweeness_centrality(MRJob):
 
 
 if __name__ == '__main__':
-    betweeness_centrality.run()
+    betweenness_centrality.run()
 
