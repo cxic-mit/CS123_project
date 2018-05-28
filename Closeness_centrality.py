@@ -65,7 +65,7 @@ class Closeness_centrality(MRJob):
             centrality = i[1]
             closeness_dict[member] = centrality
 
-        most_important = max(closeness_dict, key = closeness_dict.get)
+        most_important = min(closeness_dict, key = closeness_dict.get)
 
         yield center, (most_important, closeness_dict[most_important])
 
