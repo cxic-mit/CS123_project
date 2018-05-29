@@ -3,10 +3,11 @@
 import sys
 import os
 from MRBFS import MRBFS
+from MRMinEccentricity import MRMinEccentricity
 
 def preprocess_data(input_file, preprocess_file):
-    with open(preprocess_file, 'w+') as p, open(input_file) as f:
-        for line in f:
+    with open(preprocess_file, 'w+') as p, open(input_file) as i:
+        for line in i:
             line = line.strip('\n')
             fields = line.split(':')
             if '' not in fields and 'private' not in fields and 'notfound'\
@@ -20,7 +21,7 @@ def preprocess_data(input_file, preprocess_file):
                 outStr = '|'.join([userID, edges, str(distance), path, color])
                 p.write(outStr)
                 p.write('\n')
-        f.close()
+    i.close()
     p.close()
 
 def write_results(preprocess_file, output_file, START_NODE, END_NODE, N):
@@ -33,15 +34,15 @@ def write_results(preprocess_file, output_file, START_NODE, END_NODE, N):
                 flag = True
                 print('The path from {0} to {1} is {2}, the distance is {3}'.format(START_NODE, END_NODE, \
                     '->'.join(fields[-2].split()) + '->' + str(END_NODE), fields[-3]))
-                out.write(START_NODE, END_NODE, fields[-3])
-
+                out.write(',' .join(START_NODE, END_NODE, fields[-3]))
     if not flag:
         print('Cannot find the path from {0} to {1} within {2} degrees.'.format(START_NODE, END_NODE, N))
 
 def main():
     input_file = './data/friends-000______small.txt'
-    preprocess_file = './results/preprocess_data.txt'
+    preprocess_file = './results/preprocessed_data.txt'
     output_file = './results/output.txt'
+    min_file = './results/min.txt'
 
     preprocess_data(input_file, preprocess_file)
 
@@ -51,7 +52,7 @@ def main():
     end_nodes = range(START_NODE+1, START_NODE+nodes+1)
 
     for END_NODE in end_nodes:
-        args = '--start_node {0} --end_node {1} {2} --output=results'.format(START_NODE, END_NODE, preprocess_file)
+        args = '--start_node {0} --end_node {1} {2} --output = ./results'.format(START_NODE, END_NODE, preprocess_file)
         mr_job = MRBFS(args=args.split())
 
         for i in range(N):
@@ -59,6 +60,8 @@ def main():
                 runner.run()
 
         write_results(preprocess_file, output_file, START_NODE, END_NODE, N)
+
+    mr_job = MRMinEccentricity(args=[output_file, min_file])
 
 if __name__== "__main__":
     main()
