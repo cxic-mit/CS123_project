@@ -50,15 +50,13 @@ def write_results(preprocessed_file, paths_file, start_node):
         for line in f:
             line = line.strip('\n')
             fields = line.split('|')
-            degrees = int(fields[-3])
+            distance = int(fields[-3])
             end_node = str(fields[0])
-            print(start_node, end_node, degrees)
-            if degrees < 9999:
-                print('Start:', start_node)
-                print('End:', end_node)
-                print("The path from '{0}' to '{1}' is {2}, the distance is {3}.".format(start_node, end_node, \
-                    '->'.join(fields[-2].split()) + '->' + end_node, fields[-3]))
-                outStr = '|'.join([start_node, end_node, str(degrees)])
+            if distance < 9999:
+                print('Found path!')
+                print('Start:', start_node, 'end:', end_node, 'distance', distance)
+
+                outStr = '|'.join([start_node, end_node, str(distance)])
                 p.write(outStr)
                 p.write('\n')
 
