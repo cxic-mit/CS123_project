@@ -1,5 +1,6 @@
 # We define most well connected person as the node with the minimum eccentricity,
-# a.k.a. the radius of the largest connected component of the network.
+# a.k.a. the graph radius.
+
 import sys
 import os
 from MRBFS import MRBFS
@@ -32,7 +33,7 @@ def preprocess_data(input_file, preprocessed_file):
     p.close()
 
 
-def write_results(preprocessed_file, paths_file, START_NODE, END_NODE, N):
+def write_results(preprocessed_file, paths_file, start_node, end_node, N):
     """
     Find paths and write viable path distance to an output file.
     Inputs:
@@ -44,24 +45,30 @@ def write_results(preprocessed_file, paths_file, START_NODE, END_NODE, N):
     Returns: no explicit return; writes to paths_file.
     """
     flag = False
-    with open(preprocessed_file) as f, open(paths_file, 'w+') as out:
+    with open(preprocessed_file) as f, open(paths_file, 'a') as p:
         for line in f:
             line = line.strip('\n')
             fields = line.split('|')
-            if str(fields[0]) == END_NODE and int(fields[-3]) < 9999:
+            degrees = int(fields[-3])
+            if str(fields[0]) == end_node and degrees < 9999:
                 flag = True
-                print("The path from '{0}' to '{1}' is {2}, the distance is {3}.".format(START_NODE, END_NODE, \
-                    '->'.join(fields[-2].split()) + '->' + str(END_NODE), fields[-3]))
-                out.write(',' .join(START_NODE, END_NODE, fields[-3]))
+                print('Start:', start_node)
+                print('End:', end_node)
+                print("The path from '{0}' to '{1}' is {2}, the distance is {3}.".format(start_node, end_node, \
+                    '->'.join(fields[-2].split()) + '->' + end_node, fields[-3]))
+                print('writing...')
+                outStr = '|'.join([start_node, end_node, str(degrees)])
+                p.write(outStr)
+                p.write('\n')
 
     if not flag:
-        print("Cannot find the path from '{0}' to '{1}' within {2} degrees.".format(START_NODE, END_NODE, N))
+        print("Cannot find the path from '{0}' to '{1}' within {2} degrees.".format(start_node, end_node, N))
 
 
 def main():
     """
     Iterate through every pair of nodes to find distances.
-    Find the "most well connected" person, a.k.a. the graph radius.
+    Find the node with the minimum eccentricity.
     """
     input_file = './data/friends-000______small.txt'
     preprocessed_file = './results/preprocessed.txt'
@@ -71,26 +78,28 @@ def main():
     preprocess_data(input_file, preprocessed_file)
 
     N = 10
-    START_NODE = 146 # currently trying to use just 1 start node and 10 end nodes
-    nodes = 10
-    end_nodes = range(START_NODE+1, START_NODE+nodes+1)
+    nodes = 998
+    start = 102
+    start_nodes = map(str, range(start, start+nodes))
+    end_nodes = map(str, range(start, start+nodes))
 
-    for END_NODE in end_nodes:
-        args = "--start_node '{0}' --end_node '{1}' {2} --output = ./results".format(START_NODE, END_NODE, preprocessed_file)
-        print('Args:', args)
-        print('Output file:', preprocessed_file)
-        mr_job = MRBFS(args=args.split())
+    for start_node in start_nodes:
+        for end_node in end_nodes:
+            if start_node != end_node:
+                print(start_node, end_node)
+                args = "--start_node '{0}' --end_node '{1}' {2} --output = ./results".format(start_node, end_node, preprocessed_file)
+                mr_job = MRBFS(args=args.split())
 
-        for i in range(N):
-            with mr_job.make_runner() as runner:
-                runner.run()
-        
-        write_results(preprocessed_file, paths_file, str(START_NODE), str(END_NODE), N)
+                for i in range(N):
+                    with mr_job.make_runner() as runner:
+                        runner.run()
+                    os.system('cat results/* > {0}'.format(preprocessed_file))
+                
+                write_results(preprocessed_file, paths_file, start_node, end_node, N)
 
     # mr_job = MRMinEccentricity(args=[paths_file, min_file])
     # with mr_job.make_runner() as runner:
     #     runner.run()
-
 
 if __name__== "__main__":
     main()
