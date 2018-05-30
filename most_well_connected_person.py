@@ -33,14 +33,14 @@ def preprocess_data(input_file, preprocessed_file):
     p.close()
 
 
-def write_results(preprocessed_file, paths_file, start_node, end_node, N):
+def write_results(preprocessed_file, paths_file, start_node, end_nodes, N):
     """
     Find paths and write viable path distance to an output file.
     Inputs:
         preprocessed_file: input file
         paths_file: output file
-        START_NODE
-        END_NODE
+        start-node: start node
+        end_nodes: list of end nodes
         N: degrees limitation
     Returns: no explicit return; writes to paths_file.
     """
@@ -50,19 +50,15 @@ def write_results(preprocessed_file, paths_file, start_node, end_node, N):
             line = line.strip('\n')
             fields = line.split('|')
             degrees = int(fields[-3])
-            if str(fields[0]) == end_node and degrees < 9999:
-                flag = True
+            end_node = str(fields[0])
+            if end_node in end_nodes and degrees < 9999:
                 print('Start:', start_node)
                 print('End:', end_node)
                 print("The path from '{0}' to '{1}' is {2}, the distance is {3}.".format(start_node, end_node, \
                     '->'.join(fields[-2].split()) + '->' + end_node, fields[-3]))
-                print('writing...')
                 outStr = '|'.join([start_node, end_node, str(degrees)])
                 p.write(outStr)
                 p.write('\n')
-
-    if not flag:
-        print("Cannot find the path from '{0}' to '{1}' within {2} degrees.".format(start_node, end_node, N))
 
 
 def main():
@@ -84,18 +80,16 @@ def main():
     end_nodes = map(str, range(start, start+nodes))
 
     for start_node in start_nodes:
-        for end_node in end_nodes:
-            if start_node != end_node:
-                print(start_node, end_node)
-                args = "--start_node '{0}' --end_node '{1}' {2} --output = ./results".format(start_node, end_node, preprocessed_file)
-                mr_job = MRBFS(args=args.split())
+        print(start_node)
+            args = "--start_node '{0}' --end_node '{1}' {2} --output = ./results".format(start_node, end_node, preprocessed_file)
+            mr_job = MRBFS(args=args.split())
 
-                for i in range(N):
-                    with mr_job.make_runner() as runner:
-                        runner.run()
-                    os.system('cat results/* > {0}'.format(preprocessed_file))
-                
-                write_results(preprocessed_file, paths_file, start_node, end_node, N)
+            for i in range(N):
+                with mr_job.make_runner() as runner:
+                    runner.run()
+                os.system('cat results/* > {0}'.format(preprocessed_file))
+            
+            write_results(preprocessed_file, paths_file, start_node, end_nodes, N)
 
     # mr_job = MRMinEccentricity(args=[paths_file, min_file])
     # with mr_job.make_runner() as runner:
