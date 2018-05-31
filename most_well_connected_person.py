@@ -71,12 +71,12 @@ def main():
     paths_file = './results/paths.txt'
     min_file = './results/min.txt'
 
-    preprocess_data(input_file, preprocessed_file)
-
     N = 10
     nodes = 900
     start_nodes = map(str, range(100, 100+nodes))
-
+    
+    preprocess_data(input_file, preprocessed_file)  
+    
     for start_node in start_nodes:
         print(start_node)
         # use '0' as an end node because an end node is required to run MRBFS
@@ -89,6 +89,7 @@ def main():
             os.system('cat results/* > {0}'.format(preprocessed_file))
         
         write_results(preprocessed_file, paths_file, start_node)
+        preprocess_data(input_file, preprocessed_file)  
 
     # mr_job = MRMinEccentricity(args=[paths_file, min_file])
     # with mr_job.make_runner() as runner:
