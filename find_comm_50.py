@@ -1,4 +1,4 @@
-# The output of this community is userA, [(user_1, dist1),...(user_50, dist50)]
+# The output of this community is userA, [user_1...user_50]
 
 from mrjob.job import MRJob
 import math
