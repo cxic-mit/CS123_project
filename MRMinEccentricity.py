@@ -41,14 +41,12 @@ class MRMinEccentricity(MRJob):
 		yield self.min_eccentricity_node, self.min_eccentricity
 
 	def steps(self):
-		return [
-	      MRStep(mapper=self.mapper,
-	             combiner=self.combiner,
-	             reducer=self.reducer_max_distances),
-	      MRStep(reducer_init=self.reducer_init,
-	      		 reducer=self.reducer,
-	      		 reducer_final=self.reducer_min_eccentricity)
-	    ]
+		return [MRStep(mapper=self.mapper,
+	             	   combiner=self.combiner,
+	            	   reducer=self.reducer_max_distances),
+	      	    MRStep(reducer_init=self.reducer_init,
+	      		       reducer=self.reducer,
+	      		 	   reducer_final=self.reducer_min_eccentricity)]
 
 if __name__ == '__main__':
 	MRMinEccentricity.run()
