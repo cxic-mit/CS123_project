@@ -1,63 +1,55 @@
 # CMSC 12300: Computer Science with Applications III Project
 Team Members: Xi Chen, Yangyang Dai, Rose Gao, Liqiang Yu
 
-Folders & Files:
-- Code (contains all of our codes)
-- Presentation (contains the PPT for the final presentation)
-- Proposal (contains our initial proposed project)
-- Report (contains our final report)
-- data (contains several small sample data and input for the files)
-- Results (contains some sample outputs/results)
+## Folders & Files:
+- code: contains all python files
+- notebooks: contains all notebooks
+- presentation: contains the final presentation PowerPoint
+- proposal: contains our initial project proposal
+- report: contains our final report
+- data: contains several smaller datasets and inputs for python files
+- results: contains some sample outputs and results
 
-Usage: 
-- FriendsRecommender.py
-	- Run in command line: python3 FriendsRecommender.py --jobconf mapreduce.job.reduces=1 data/small.txt > data/output.txt
+## Usage: 
+- friends_recommender.py
+	- Run in command line: python3 friends_recommender.py --jobconf mapreduce.job.reduces=1 input_file > output_file
+	- e.g. input_file = data/small.txt
 
-- Get_pairs_distance.py
-	- Run in command line: python3 Get_pairs_distance.py -r dataproc --num-core-instances 4 data_10000-20000.txt --file data_10000-20000.txt > output_distance_10000-20000.txt
+- run_MRBFS.py
+	- Run in command line: python3 run_MRBFS.py start_node end_node 
+	- e.g. start_node = 902, end_node = 222
 
-- Closeness_centrality.py
-	- Run in command line: python3 Closeness_centrality.py user_10000-20000_community.txt –file output_distance_10000-20000.txt > output_closeness_centrality.txt
+- get_pairs_distance.py
+	- Run in command line: python3 get_pairs_distance.py -r dataproc --num-core-instances 4 input_file --file data_10000-20000.txt > output_distance_10000-20000.txt
+	- e.g. input_file = data_10000-20000.txt
 
-- Degree_centrality.py
-	- Run in command line: python3 Degree_centrality.py -r dataproc --num-core-instances 4 data_10000-20000.txt –file user_10000-20000_community.txt > output_degree_centrality.txt
+- closeness_centrality.py
+	- Run in command line: python3 closeness_centrality.py input_file –file output_distance_10000-20000.txt > output_closeness_centrality.txt
+	- e.g. input_file = user_10000-20000_community.txt
+
+- degree_centrality.py
+	- Run in command line: python3 degree_centrality.py -r dataproc --num-core-instances 4 data_input_file –file user_input_file > output_degree_centrality.txt
+	- e.g. data_input_file = data_10000-20000.txt
+	- e.g. user_input_file = user_10000-20000_community.txt
 	
 - Eigenvector_centrality.py
-	- Run in command line: python3 Eigenvector_centrality.py user_10000-20000_community.txt –file data_10000-20000.txt > output_eigenvector_centrality.txt
+	- Run in command line: python3 eigenvector_centrality.py input_file –file  > output_file
+	- e.g. input_file = user_10000-20000_community.txt
+	
+- compute_all_paths.py
+	- Run in command line: python3 compute_all_paths.py node_start node_end range_start range_end
+	- e.g. node_start = 102, node_end = 367, range_start = 102, range_end = 367
 
- 
+- MRMinEccenticity.py
+	- Run in command line: python3 MRMinEccentricity.py --jobconf mapreduce.job.reduces=1 input_file
+	- e.g. input_file = ./results/paths.txt
 
-## Problems
-### 1. When setting the number of nodes to be 8, get errors: 
- - Insufficient 'DISKS_TOTAL_GB' quota. Requested 4500.0, available 4076.0.
- - Insufficient 'IN_USE_ADDRESSES' quota. Requested 9.0, available 8.0.">
 
-### 2. CPU usage is around 6%. How to improve this?
-
-### 3. When running on a larger file ~47 MB, 
-
-- BrokenPipeError: [Errno 32] Broken pipe
-: tried to output the file directly onto GCP
-
-### 4. How to run on a 9.3 GB file? Split first or upload it onto GCP
-
-### 5. Feasible to run in background?
-
-### 6. Used a large amount of memory
-
-## Usage
-python3 FriendsRecommender.py -r dataproc --num-core-instances 12 ./data/friends-000______.txt --output-dir=gs://mrjob-us-central1-ab479002dcab930f/test_res/
+## GCP Usage
+python3 FriendsRecommender.py -r dataproc --num-core-instances 12 ./data/friends-000______.txt --output-dir=GCP_bucket_link
 
 python3 FriendsRecommender.py --jobconf mapreduce.job.reduces=1 ./data/friends-000______small.csv 
 
-
-python3 FriendsRecommender.py -r dataproc --instance-type n1-highmem-2 --num-core-instances 30 gs://mrjob-us-central1-ab479002dcab930f/data/friends-000______.txt --output-dir=gs://mrjob-us-central1-ab479002dcab930f/test_res_000/
+python3 FriendsRecommender.py -r dataproc --instance-type n1-highmem-2 --num-core-instances 30 gs://mrjob-us-central1-ab479002dcab930f/data/friends-000______.txt --output-dir=GCP_bucket_link
 
 python3 FriendsRecommender.py -r dataproc --num-core-instances 3 gs://mrjob-us-central1-ab479002dcab930f/data/friends-000______small.txt > 000_small.txt
-
-#### run_MRBFS.py
-python run_MRBFS.py 902 222 
-{the first number indicates the start node 
-the second number indicates the end node}
-
-
