@@ -69,8 +69,8 @@ The purpose of this project is to serve as a grounding framework for social netw
 	
 - eigenvector_centrality.py
 	- Run in command line: python3 eigenvector_centrality.py community_file --file input_file > output_file
-	- e.g. community_file = user_10000-20000_community.txt
-	- e.g. input_file = user_10000-20000_community.txt
+	- e.g. community_file = user_1000-2000_community.txt
+	- e.g. input_file = data_1000-2000.txt
 	
 - compute_all_paths.py
 	- Run in command line: python3 compute_all_paths.py node_start node_end range_start range_end
