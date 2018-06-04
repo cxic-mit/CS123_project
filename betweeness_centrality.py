@@ -7,33 +7,35 @@ from collections import defaultdict
 
 
 def read_line(line):
+# This function reads in each line of the input file from the community file
+# and returns each userN, and a list of other users that are within his community
     cnt=0
     line = re.findall(r"[-+]?\d*\.\d+|\d+", line)
     user_1 = line[0]
     lst = []
     
-    for i in range(1,len(line)-1):
-        cnt+=1
-        if cnt%2==1:
-            user_2 = line[i]
-            lst.append(user_2, distance)        
+    for i in range(1,len(line)-1):       
+        user_2 = line[i]
+        lst.append(user_2)        
     return user_1, lst
 
 
 class betweenness_centrality(MRJob):
-    
+# The mapreduce implementation maps each user and his community
+# to the shortest paths of each users and returns the central 
+# user within the community based on calculated betweenness score
+# the format of lst is [(pr1, path1)...,(prN, pathN)]
+
     def mapper_init(self):
         with open("shortest_path.txt", "r") as f:
             self.data = f.readlines()
 
-
     def mapper(self, _, line):
         lst = []
         user_1, comm = read_line(line)
-        len_comm = len(comm)
         pairs = list(itertools.permutations(comm, 2))
         for pr in pairs:
-            for pair, path in data:
+            for pair, path in self.data:
                 if pr == pair:
                     shortest_path = path
                     lst.append((pr, shortest_path))
@@ -41,7 +43,7 @@ class betweenness_centrality(MRJob):
         yield comm, lst
 
 
-    # the format of lst is [(pr1, path1)...,(prN, pathN)]
+    
     def reducer(self, comm, pr_path_lst):
         dict_score = {}
         dict_score = defaultdict(lambda: 0, dict_score)
