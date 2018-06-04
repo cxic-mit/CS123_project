@@ -1,24 +1,30 @@
 # CMSC 12300: Computer Science with Applications III Project
 Team Members: Xi Chen, Yangyang Dai, Rose Gao, Liqiang Yu
 
-Files:
-1. Code (contains all of our codes)
-2. Presentation (contains the PPT for the final presentation)
-3. Proposal (contains our initial proposed project)
-4. Report (contains our final report)
-5. data (contains a short sample text file)
-6. Results (contains some sample outputs/results)
+Folders & Files:
+- Code (contains all of our codes)
+- Presentation (contains the PPT for the final presentation)
+- Proposal (contains our initial proposed project)
+- Report (contains our final report)
+- data (contains several small sample data and input for the files)
+- Results (contains some sample outputs/results)
 
-
-3. Exploration.ipynb: initial exploration of Friendster dataset
-FriendsRecommender.py
+Usage: 
+- FriendsRecommender.py
 	- Run in command line: python3 FriendsRecommender.py --jobconf mapreduce.job.reduces=1 data/small.txt > data/output.txt
-Get_pairs_distance.py
-	- Run in command line: python3 Get_pairs_distance.py -r dataproc --num-core-instances 10 friends-000.txt --file friends-000.txt > data/output_distance.txt
-Closeness_centrality.py
-	- Run in command line: python3 Closeness_centrality.py comm_50.txt –file output_200-500_community.txt > output_closeness_output.txt
-Degree_centrality.py
-	- Run in command line: closeness_output.txtpython3 Degree_centrality.py data_200-500.txt –file comm_50.txt > output_degree_centrality.txt
+
+- Get_pairs_distance.py
+	- Run in command line: python3 Get_pairs_distance.py -r dataproc --num-core-instances 4 data_10000-20000.txt --file data_10000-20000.txt > output_distance_10000-20000.txt
+
+- Closeness_centrality.py
+	- Run in command line: python3 Closeness_centrality.py user_10000-20000_community.txt –file output_distance_10000-20000.txt > output_closeness_centrality.txt
+
+- Degree_centrality.py
+	- Run in command line: python3 Degree_centrality.py -r dataproc --num-core-instances 4 data_10000-20000.txt –file user_10000-20000_community.txt > output_degree_centrality.txt
+	
+- Eigenvector_centrality.py
+	- Run in command line: python3 Eigenvector_centrality.py user_10000-20000_community.txt –file data_10000-20000.txt > output_eigenvector_centrality.txt
+
  
 
 ## Problems
