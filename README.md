@@ -56,7 +56,16 @@ The purpose of this project is to serve as a grounding framework for social netw
 	- Run in command line: python3 get_pairs_distance.py input_file --file copy_file > output_distance.txt
 	- e.g. input_file = data_10000-20000.txt
 	- e.g. copy_file = data_10000-20000.txt
-
+	
+- find_comm_50.py
+	- Run in command line: python3 find_comm_50.py input_file > output_community.txt
+	- e.g. input_file = output_distance.txt
+	- e.g. output_file = output_community.txt
+	
+- find_comm.py
+	- same as above
+	- the only difference is the format of the data in the output file
+	
 - closeness_centrality.py
 	- Run in command line: python3 closeness_centrality.py input_file --file distance_file > output_closeness_centrality.txt
 	- e.g. input_file = user_10000-20000_community.txt
