@@ -20,20 +20,23 @@ Team Members: Xi Chen, Yangyang Dai, Rose Gao, Liqiang Yu
 	- e.g. start_node = 902, end_node = 222
 
 - get_pairs_distance.py
-	- Run in command line: python3 get_pairs_distance.py -r dataproc --num-core-instances 4 input_file --file data_10000-20000.txt > output_distance_10000-20000.txt
+	- Run in command line: python3 get_pairs_distance.py input_file --file copy_file > output_distance.txt
 	- e.g. input_file = data_10000-20000.txt
+	- e.g. copy_file = data_10000-20000.txt
 
 - closeness_centrality.py
-	- Run in command line: python3 closeness_centrality.py input_file –file output_distance_10000-20000.txt > output_closeness_centrality.txt
+	- Run in command line: python3 closeness_centrality.py input_file –-file distance_file > output_closeness_centrality.txt
 	- e.g. input_file = user_10000-20000_community.txt
+	- e.g. distance_file = output_distance_10000-20000.txt
 
 - degree_centrality.py
-	- Run in command line: python3 degree_centrality.py -r dataproc --num-core-instances 4 data_input_file –file user_input_file > output_degree_centrality.txt
-	- e.g. data_input_file = data_10000-20000.txt
-	- e.g. user_input_file = user_10000-20000_community.txt
+	- Run in command line: python3 degree_centrality.py input_file –-file community_file > output_degree_centrality.txt
+	- e.g. input_file = data_10000-20000.txt
+	- e.g. community_file = user_10000-20000_community.txt
 	
 - eigenvector_centrality.py
-	- Run in command line: python3 eigenvector_centrality.py input_file –file  > output_file
+	- Run in command line: python3 eigenvector_centrality.py community_file –-file input_file > output_file
+	- e.g. community_file = user_10000-20000_community.txt
 	- e.g. input_file = user_10000-20000_community.txt
 	
 - compute_all_paths.py
@@ -53,3 +56,12 @@ python3 FriendsRecommender.py --jobconf mapreduce.job.reduces=1 ./data/friends-0
 python3 FriendsRecommender.py -r dataproc --instance-type n1-highmem-2 --num-core-instances 30 gs://mrjob-us-central1-ab479002dcab930f/data/friends-000______.txt --output-dir=GCP_bucket_link
 
 python3 FriendsRecommender.py -r dataproc --num-core-instances 3 gs://mrjob-us-central1-ab479002dcab930f/data/friends-000______small.txt > 000_small.txt
+python3 Get_pairs_distance.py -r dataproc --num-core-instances 4 data_10000-20000.txt --file data_10000-20000.txt > output_distance_10000-20000.txt
+
+python3 Degree_centrality.py -r dataproc --num-core-instances 4 data_10000-20000.txt –file user_10000-20000_community.txt > output_degree_centrality.txt
+
+python3 Closeness_centrality.py -r dataproc --num-core-instances 4 user_10000-20000_community.txt –file output_distance_10000-20000.txt > output_closeness_centrality.txt
+
+python3 Eigenvector_centrality.py -r dataproc --num-core-instances 4 user_10000-20000_community.txt –file data_10000-20000.txt > output_eigenvector_centrality.txt
+
+
