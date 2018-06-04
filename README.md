@@ -32,7 +32,7 @@ Team Members: Xi Chen, Yangyang Dai, Rose Gao, Liqiang Yu
 	- e.g. data_input_file = data_10000-20000.txt
 	- e.g. user_input_file = user_10000-20000_community.txt
 	
-- Eigenvector_centrality.py
+- eigenvector_centrality.py
 	- Run in command line: python3 eigenvector_centrality.py input_file –file  > output_file
 	- e.g. input_file = user_10000-20000_community.txt
 	
