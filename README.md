@@ -61,8 +61,5 @@ python3 Get_pairs_distance.py -r dataproc --num-core-instances 4 data_10000-2000
 
 python3 Degree_centrality.py -r dataproc --num-core-instances 4 data_10000-20000.txt –file user_10000-20000_community.txt > output_degree_centrality.txt
 
-python3 Closeness_centrality.py -r dataproc --num-core-instances 4 user_10000-20000_community.txt –file output_distance_10000-20000.txt > output_closeness_centrality.txt
-
-python3 Eigenvector_centrality.py -r dataproc --num-core-instances 4 user_10000-20000_community.txt –file data_10000-20000.txt > output_eigenvector_centrality.txt
 
 
