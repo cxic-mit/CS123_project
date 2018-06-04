@@ -48,38 +48,4 @@ python run_MRBFS.py 902 222
 {the first number indicates the start node 
 the second number indicates the end node}
 
-### To do
-
-Learn to use screen to run mrjob in 'background'.
-
-Imporve the performance of FriendRecommender.py
-
-
-10000-20000
-
-### Nest-step Tasks:
-Centrality:
-1. Betweeness
-2. Closeness
-3. Eigenvector
-4. Degree Centrality
-- Task: get 2 done by Saturday, 2 done by Sunday
-
-Find out the shortest path from user 1 to user 2
-- Task: get done by Saturday
-
-Kevin Bacon number
-- Task: get done by Sunday
-
-Compare the size/closeness of different communities
-- choose centroids that are far from each other 
-- Task: get done by Sunday
-
-Fill up the “private”
-- Task: get done by Saturday
-
-Visualize the small community
-
-
-Use "networkx" to do another version for the above tasks
 
