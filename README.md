@@ -19,6 +19,7 @@ The purpose of this project is to serve as a grounding framework for social netw
 		- degree_centrality.py
 		- eigenvector_centrality.py
 		- find_comm_50.py
+		- find_shortest_path.py
 		- get_pairs_distance.py
 	- Network Analysis:
 		- compute_all_paths.py
