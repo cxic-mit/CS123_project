@@ -15,6 +15,9 @@ class Node:
 		self.color = 'white'
 
 	def read_input(self, line):
+		'''
+		Read a graph file and store the values to a node
+		'''
 		record = line.split('|')
 		if (len(record) == 5):
 			self.nodeID = record[0]
@@ -27,6 +30,9 @@ class Node:
 			self.color = record[4]
 
 	def get_val(self):
+		'''
+		Get the information in a node
+		'''
 		children = ','.join(self.children)
 		if self.path:
 			path = ' '.join(self.path)
@@ -43,6 +49,9 @@ class MRBFS(MRJob):
 	OUTPUT_PROTOCOL = RawValueProtocol
 
 	def configure_options(self):
+		'''
+		Configuration options
+		'''
 		super(MRBFS, self).configure_options()
 		self.add_passthrough_option('--start_node', default='902', type=str, \
 			help='starting node for finding shortest path')
@@ -54,6 +63,7 @@ class MRBFS(MRJob):
 	def mapper(self, _, line):
 		'''
 		Do the BFS algorithm in mapper
+			yield: NodeID, NodeID | Children | Distance | Path | Color
 		'''
 		node = Node()
 		node.read_input(line)
@@ -81,8 +91,7 @@ class MRBFS(MRJob):
 
 	def reducer(self, key, value):
 		'''
-		Only yield the shortest path and store the full list of children
-		into 
+		Yield the shortest path and store the full list of children
 		'''
 		max_distance = sys.maxsize
 		path = []

@@ -2,7 +2,7 @@ from mrjob.job import MRJob
 import itertools
 from heapq import nlargest
 
-TOP_N = 5 #to reduce the file size
+TOP_N = 5 #the number of friends we want to recommend to someone
 
 class FriendsRecommender(MRJob):
     def mapper(self, _, line):
@@ -10,7 +10,7 @@ class FriendsRecommender(MRJob):
     Create potential friend pair permutations.
         Input: each line is a person followed by list of the person's friends
                e.g. '104:101,1143,628701,2438054'
-        Output: yield (user1, user2), mutualFriend
+        Output: yield 'user1 user2', mutualFriend
 
         '''
         user, friends_str = line.split(':')
