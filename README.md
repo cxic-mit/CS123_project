@@ -35,7 +35,7 @@ Team Members: Xi Chen, Yangyang Dai, Rose Gao, Liqiang Yu
 	- e.g. community_file = user_10000-20000_community.txt
 	
 - eigenvector_centrality.py
-	- Run in command line: python3 eigenvector_centrality.py community_file –-file input_file > output_file
+	- Run in command line: python3 eigenvector_centrality.py community_file –-file input_file > output_eigenvector_centrality.txt
 	- e.g. community_file = user_10000-20000_community.txt
 	- e.g. input_file = user_10000-20000_community.txt
 	
