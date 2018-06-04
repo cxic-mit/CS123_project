@@ -99,5 +99,5 @@ python3 get_pairs_distance.py -r dataproc --num-core-instances 4 data_10000-2000
 
 python3 degree_centrality.py -r dataproc --num-core-instances 4 data_10000-20000.txt --file user_10000-20000_community.txt > output_degree_centrality.txt
 
---
+##
 We would like to express our sincere gratitude to Dr. Matthew Wachs for his support on this project!
