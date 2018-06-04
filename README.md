@@ -81,7 +81,7 @@ The purpose of this project is to serve as a grounding framework for social netw
 ## GCP Usage
 python3 friends_recommender.py -r dataproc --num-core-instances 12 ./data/friends-000______.txt --output-dir=GCP_bucket_link
 
-python3 friends_recommender.py -r dataproc --instance-type n1-highmem-2 --num-core-instances 30 gs://mrjob-us-central1-ab479002dcab930f/data/friends-000______.txt --output-dir=GCP_bucket_link
+python3 friends_recommender.py -r dataproc --instance-type n1-highmem-2 --num-core-instances 30 ./data/friends-000______.txt --output-dir=GCP_bucket_link
 
 python3 friends_recommender.py -r dataproc --num-core-instances 3 gs://mrjob-us-central1-ab479002dcab930f/data/friends-000______small.txt > 000_small.txt
 
