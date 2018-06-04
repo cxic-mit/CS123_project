@@ -58,17 +58,17 @@ The purpose of this project is to serve as a grounding framework for social netw
 	- e.g. copy_file = data_10000-20000.txt
 
 - closeness_centrality.py
-	- Run in command line: python3 closeness_centrality.py input_file â€“-file distance_file > output_closeness_centrality.txt
+	- Run in command line: python3 closeness_centrality.py input_file --file distance_file > output_closeness_centrality.txt
 	- e.g. input_file = user_10000-20000_community.txt
 	- e.g. distance_file = output_distance_10000-20000.txt
 
 - degree_centrality.py
-	- Run in command line: python3 degree_centrality.py input_file â€“-file community_file > output_degree_centrality.txt
+	- Run in command line: python3 degree_centrality.py input_file --file community_file > output_degree_centrality.txt
 	- e.g. input_file = data_10000-20000.txt
 	- e.g. community_file = user_10000-20000_community.txt
 	
 - eigenvector_centrality.py
-	- Run in command line: python3 eigenvector_centrality.py community_file â€“-file input_file > output_file
+	- Run in command line: python3 eigenvector_centrality.py community_file --file input_file > output_file
 	- e.g. community_file = user_10000-20000_community.txt
 	- e.g. input_file = user_10000-20000_community.txt
 	
