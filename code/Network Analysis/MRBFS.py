@@ -63,7 +63,8 @@ class MRBFS(MRJob):
 	def mapper(self, _, line):
 		'''
 		Do the BFS algorithm in mapper
-			yield: NodeID, NodeID | Children | Distance | Path | Color
+			yield: NodeID, NodeID | Children (null if we just expanded it) 
+			| Distance | Path | Color
 		'''
 		node = Node()
 		node.read_input(line)
@@ -92,6 +93,8 @@ class MRBFS(MRJob):
 	def reducer(self, key, value):
 		'''
 		Yield the shortest path and store the full list of children
+			yield: NodeID, NodeID | Children (full list)| Distance (shortest)
+			| Path (shortest) | Color (darkest)
 		'''
 		max_distance = sys.maxsize
 		path = []

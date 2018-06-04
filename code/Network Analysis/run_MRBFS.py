@@ -8,6 +8,10 @@ def preprocess_data(input_file, output_file):
     add delimiters, and add default color and distance.
 
     Inputs: input_file
+    Outputs: A graph representation of our network file, each line is
+
+    NodeID | Children | Distance (9999)| Path (null)| Color (white)
+
     Returns: no explicit return; writes to preprocessed_file.
     """
     print('preprocessing data!')
@@ -32,7 +36,7 @@ def preprocess_data(input_file, output_file):
 
 def run_mrjob(mr_job, N, output_file):
     """
-    Run MRBFS
+    Run MRBFS iteratively
     """
     for i in range(N):
         with mr_job.make_runner() as runner:
