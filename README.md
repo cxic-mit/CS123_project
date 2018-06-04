@@ -1,7 +1,7 @@
 # CMSC 12300: Computer Science with Applications III Project
 Team Members: Xi Chen, Yangyang Dai, Rose Gao, Liqiang Yu
 
-## Folders & Files:
+## Folders & Files
 - code: contains all python files
 - notebooks: contains all notebooks
 - presentation: contains the final presentation PowerPoint
@@ -10,7 +10,7 @@ Team Members: Xi Chen, Yangyang Dai, Rose Gao, Liqiang Yu
 - data: contains several smaller datasets and inputs for python files
 - results: contains some sample outputs and results
 
-## Usage: 
+## Usage
 - friends_recommender.py
 	- Run in command line: python3 friends_recommender.py --jobconf mapreduce.job.reduces=1 input_file > output_file
 	- e.g. input_file = data/small.txt
