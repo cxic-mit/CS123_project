@@ -1,5 +1,8 @@
 # Friendster Network Analysis
 ## Project for CMSC 12300: Computer Science with Applications III 
+
+Team Name: The Da Vinci Code
+
 Team Members: Xi Chen, Yangyang Dai, Rose Gao, Liqiang Yu
 
 ## Introduction
