@@ -5,7 +5,7 @@ Team Name: The Da Vinci Code
 
 Team Members: Xi Chen, Yangyang Dai, Rose Gao, Liqiang Yu
 
-We would like to express our sincere gratitude to Dr. Matthew Wachs for his support and help on this project!
+We would like to express our sincere gratitude to Dr. Matthew Wachs for his support on this project!
 
 ## Introduction
 The purpose of this project is to serve as a grounding framework for social network analysis with big data. Our project uses the Friendster’s dataset from the Stanford SNAP data collection. 
