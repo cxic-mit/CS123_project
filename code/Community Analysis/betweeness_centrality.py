@@ -4,7 +4,7 @@
 
 from mrjob.job import MRJob
 from collections import defaultdict
-
+import itertools
 
 def read_line(line):
 # This function reads in each line of the input file from the community file
